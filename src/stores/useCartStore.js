@@ -3,13 +3,13 @@ import { ref, computed } from 'vue'
 import { fetchCart, addCartItem, updateCartItem, deleteCartItem, clearCart } from '@/api/endpoints/cart.js'
 
 export const useCartStore = defineStore('cart', () => {
-  const items    = ref([])
-  const loading  = ref(false)
-  const error    = ref(null)
+  const items = ref([])
+  const loading = ref(false)
+  const error = ref(null)
 
-  const subTotal   = computed(() => items.value.reduce((s, i) => s + i.price * i.qty, 0))
+  const subTotal = computed(() => items.value.reduce((s, i) => s + i.price * i.qty, 0))
   const grandTotal = computed(() => subTotal.value)
-  const itemCount  = computed(() => items.value.reduce((s, i) => s + i.qty, 0))
+  const itemCount = computed(() => items.value.reduce((s, i) => s + i.qty, 0))
 
   async function getCart() {
     loading.value = true; error.value = null
