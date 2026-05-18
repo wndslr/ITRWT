@@ -6,7 +6,7 @@ export const useProductStore = defineStore('product', () => {
   const product = ref(null)
   const related = ref([])
   const loading = ref(false)
-  const error   = ref(null)
+  const error = ref(null)
 
   async function getProduct(id) {
     loading.value = true; error.value = null; product.value = null
