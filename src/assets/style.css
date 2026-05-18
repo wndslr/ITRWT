@@ -35,7 +35,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   padding:0 16px;
 }
 
-/* header */
 .header{
   background:var(--dark);
   position:relative;
@@ -106,7 +105,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   justify-content:center;
 }
 
-/* hero */
 .hero{
   position:relative;
   background:var(--hero-bg);
@@ -148,7 +146,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   font-size:32px;
 }
 
-/* page-head (caталог/карточка: NEW ARRIVALS + breadcrumbs) */
 .page-head{
   background:#F8F3F4;
 }
@@ -179,7 +176,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   font-weight:700;
 }
 
-/* offer */
 .offer{padding:64px 0;}
 .offer__grid{
   display:grid;
@@ -221,7 +217,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   margin-bottom:7px;
 }
 
-/* products */
 .products{padding:0 0 96px;}
 .products__head{
   text-align:center;
@@ -316,7 +311,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 }
 .btn-outline:hover{background:var(--pink);color:var(--white);}
 
-/* ========== CATALOG PAGE ========== */
 .catalog{padding:40px 0 96px;}
 .catalog__layout{
   display:grid;
@@ -324,7 +318,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   gap:32px;
 }
 
-/* filter sidebar */
 .filter__head{
   display:flex;
   align-items:center;
@@ -368,7 +361,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 .filter__list li:hover{color:var(--pink);}
 .filter__list li.is-active{color:var(--pink);}
 
-/* sort bar */
 .catalog__main{display:flex;flex-direction:column;}
 .sortbar{
   display:flex;
@@ -413,7 +405,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 }
 .sortbar__dropdown input{accent-color:var(--pink);}
 
-/* catalog product grid (sandy bg цена/описание) */
 .catalog__grid{
   display:grid;
   grid-template-columns:1fr;
@@ -421,7 +412,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 }
 .catalog__grid .product__image{background:#F7E4E2;}
 
-/* pagination */
 .pagination{
   display:flex;
   justify-content:center;
@@ -447,7 +437,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 .pagination__arrow:hover{color:var(--pink);}
 .pagination__page.is-active{color:var(--pink);}
 
-/* ========== PRODUCT PAGE ========== */
 .product-page{background:var(--white);}
 .product-gallery{
   position:relative;
@@ -560,7 +549,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 }
 .btn-add-cart:hover{background:var(--pink);color:var(--white);}
 
-/* features */
 .features{
   background:var(--dark-2);
   padding:50px 0;
@@ -592,7 +580,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   align-self:stretch;
 }
 
-/* subscribe */
 .subscribe{
   position:relative;
   background:#F2F2F2;
@@ -673,7 +660,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 }
 .subscribe__field button:hover{background:var(--pink-hover);}
 
-/* footer */
 .footer{background:var(--dark-2);}
 .footer__inner{
   display:flex;
@@ -698,7 +684,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 }
 .socials a:hover{background:var(--pink);color:var(--white);}
 
-/* ========== CART PAGE ========== */
 .cart{padding:0 0 96px;}
 .cart__layout{
   display:grid;
@@ -780,7 +765,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 }
 .btn-cart-action:hover{background:var(--dark);color:var(--white);}
 
-/* shipping sidebar */
 .cart__sidebar{display:flex;flex-direction:column;gap:20px;}
 .shipping-box{
   background:var(--white);
@@ -852,7 +836,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 }
 .btn-checkout:hover{background:var(--pink-hover);}
 
-/* ========== REGISTRATION PAGE ========== */
 .registration{padding:0 0 96px;}
 .registration__layout{
   display:grid;
@@ -950,7 +933,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   color:var(--pink);
 }
 
-/* ========== TABLET 768px-1599px ========== */
 @media (min-width:768px){
   .container{padding:32px;}
 
@@ -980,18 +962,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
     grid-template-columns:1fr 1fr;
   }
 
-  /* cart tablet: 2 колонки */
   .cart__layout{
     grid-template-columns:1fr 270px;
     gap:40px;
   }
-  /* registration tablet: 2 колонки */
   .registration__layout{
     grid-template-columns:1fr 1fr;
     gap:64px;
   }
-
-  /* catalog tablet: фильтр сверху, сетка 2 кол */
+  
   .catalog__grid{
     grid-template-columns:1fr 1fr;
   }
@@ -1032,7 +1011,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   }
 }
 
-/* ========== DESKTOP 1600px+ ========== */
 @media (min-width:1600px){
   .burger{display:none;}
 
@@ -1063,18 +1041,17 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
     gap:30px;
   }
 
-  /* cart desktop */
   .cart__layout{
     grid-template-columns:1fr 310px;
     gap:48px;
   }
-  /* registration desktop: форма уже, перки шире */
+
   .registration__layout{
     grid-template-columns:1fr 1fr;
     gap:96px;
   }
 
-  /* catalog desktop: сайдбар 360 + сетка 3 кол */
+
   .catalog__layout{
     grid-template-columns:360px 1fr;
     gap:30px;
@@ -1111,7 +1088,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   .subscribe__quote{flex:0 0 360px;}
 }
 
-/* ========== NAV (mobile/tablet burger) ========== */
 @media (max-width:1599px){
   .header__inner{position:relative;}
   .burger{display:block;}
