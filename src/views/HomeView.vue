@@ -6,9 +6,9 @@ import AppFooter from '@/components/AppFooter.vue'
 import ProductCard from '@/components/ProductCard.vue'
 
 const offers = [
-  { mod: 'women',       label: 'WOMEN' },
-  { mod: 'men',         label: 'MEN' },
-  { mod: 'kids',        label: 'KIDS' },
+  { mod: 'women', label: 'WOMEN' },
+  { mod: 'men', label: 'MEN' },
+  { mod: 'kids', label: 'KIDS' },
   { mod: 'accessories', label: 'ACCESSORIES' }
 ]
 const products = Array.from({ length: 6 })
