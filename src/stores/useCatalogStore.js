@@ -3,15 +3,15 @@ import { ref } from 'vue'
 import { fetchCatalog, fetchHome } from '@/api/endpoints/catalog.js'
 
 export const useCatalogStore = defineStore('catalog', () => {
-  const homeData   = ref(null)
+  const homeData = ref(null)
 
-  const items      = ref([])
-  const page       = ref(1)
+  const items = ref([])
+  const page = ref(1)
   const totalPages = ref(1)
-  const total      = ref(0)
-  const filters    = ref({ category: '', size: '' })
-  const loading    = ref(false)
-  const error      = ref(null)
+  const total = ref(0)
+  const filters = ref({ category: '', size: '' })
+  const loading = ref(false)
+  const error = ref(null)
 
   async function getHome() {
     loading.value = true; error.value = null
@@ -26,10 +26,10 @@ export const useCatalogStore = defineStore('catalog', () => {
       const merged = { page: page.value, limit: 6, ...filters.value, ...params }
       Object.keys(merged).forEach(k => merged[k] === '' && delete merged[k])
       const data = await fetchCatalog(merged)
-      items.value      = data.items
-      page.value       = data.page
+      items.value = data.items
+      page.value = data.page
       totalPages.value = data.totalPages
-      total.value      = data.total
+      total.value = data.total
     } catch (e) { error.value = e.message }
     finally { loading.value = false }
   }
