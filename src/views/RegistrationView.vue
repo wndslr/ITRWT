@@ -40,7 +40,6 @@ const submit = () => {
     <div class="container">
       <div class="registration__layout">
 
-        <!-- FORM -->
         <form class="reg-form" @submit.prevent="submit">
           <div class="reg-form__section-label">Your Name</div>
           <input type="text" v-model="form.firstName" placeholder="First Name" />
@@ -72,7 +71,6 @@ const submit = () => {
           </button>
         </form>
 
-        <!-- PERKS -->
         <div class="reg-perks">
           <h2 class="reg-perks__title">LOYALTY HAS ITS PERKS</h2>
           <p class="reg-perks__desc">
