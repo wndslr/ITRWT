@@ -1,21 +1,14 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { onMounted } from 'vue'
 import AppHeader from '@/components/AppHeader.vue'
 import AppSubscribe from '@/components/AppSubscribe.vue'
 import AppFooter from '@/components/AppFooter.vue'
+import { useCartStore } from '@/stores/useCartStore.js'
 
-const items = ref([
-  { id: 1, name: 'MANGO PEOPLE T-SHIRT', price: 300, color: 'Red', size: 'XL', qty: 2 },
-  { id: 2, name: 'MANGO PEOPLE T-SHIRT', price: 300, color: 'Red', size: 'XL', qty: 2 }
-])
+const store = useCartStore()
+onMounted(() => store.getCart())
 
-const shipping = ref({ country: '', state: '', postcode: '' })
-
-const subTotal = computed(() => items.value.reduce((s, i) => s + i.price * i.qty, 0))
-const grandTotal = computed(() => subTotal.value)
-
-const removeItem = (id) => { items.value = items.value.filter(i => i.id !== id) }
-const clearCart = () => { items.value = [] }
+const shipping = { country: '', state: '', postcode: '' }
 </script>
 
 <template>
@@ -31,36 +24,36 @@ const clearCart = () => { items.value = [] }
 
   <section class="cart">
     <div class="container">
-      <div class="cart__layout">
+      <div v-if="store.loading" style="padding:48px;color:var(--text-muted)">Loading...</div>
+      <div class="cart__layout" v-else>
 
-        <!-- ITEMS -->
         <div>
           <div class="cart__items">
-            <div class="cart-item" v-for="item in items" :key="item.id">
-              <div class="cart-item__img"></div>
+            <div class="cart-item" v-for="item in store.items" :key="item.id">
+              <div class="cart-item__img" :style="item.image ? { backgroundImage: `url(${item.image})`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}"></div>
               <div class="cart-item__body">
-                <div class="cart-item__name">{{ item.name }}</div>
+                <div class="cart-item__name">{{ item.title }}</div>
                 <div class="cart-item__meta">
                   Price: <strong>${{ item.price }}</strong><br />
                   Color: {{ item.color }}<br />
                   Size: {{ item.size }}<br />
                   <span class="cart-item__qty">
                     Quantity:
-                    <input type="number" v-model="item.qty" min="1" />
+                    <input type="number" :value="item.qty" min="1"
+                      @change="store.updateCart(item.id, { qty: +$event.target.value })" />
                   </span>
                 </div>
               </div>
-              <button class="cart-item__remove" @click="removeItem(item.id)" aria-label="Remove">×</button>
+              <button class="cart-item__remove" @click="store.deleteFromCart(item.id)" aria-label="Remove">×</button>
             </div>
           </div>
 
           <div class="cart__actions">
-            <button class="btn-cart-action" @click="clearCart">CLEAR SHOPPING CART</button>
+            <button class="btn-cart-action" @click="store.clearCartAll">CLEAR SHOPPING CART</button>
             <router-link to="/catalog" class="btn-cart-action">CONTINUE SHOPPING</router-link>
           </div>
         </div>
 
-        <!-- SIDEBAR -->
         <div class="cart__sidebar">
           <div class="shipping-box">
             <div class="shipping-box__title">SHIPPING ADRESS</div>
@@ -73,11 +66,11 @@ const clearCart = () => { items.value = [] }
           <div class="totals-box">
             <div class="totals-box__row">
               <span class="label">SUB TOTAL</span>
-              <span class="amount">${{ subTotal }}</span>
+              <span class="amount">${{ store.subTotal }}</span>
             </div>
             <div class="totals-box__row grand">
               <span class="label">GRAND TOTAL</span>
-              <span class="amount">${{ grandTotal }}</span>
+              <span class="amount">${{ store.grandTotal }}</span>
             </div>
             <button class="btn-checkout">PROCEED TO CHECKOUT</button>
           </div>

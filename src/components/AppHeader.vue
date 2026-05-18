@@ -1,9 +1,13 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useCartStore } from '@/stores/useCartStore.js'
 
 const navOpen = ref(false)
 const toggleNav = () => { navOpen.value = !navOpen.value }
 const closeNav = () => { navOpen.value = false }
+
+const cartStore = useCartStore()
+onMounted(() => cartStore.getCart())
 </script>
 
 <template>
@@ -29,7 +33,7 @@ const closeNav = () => { navOpen.value = false }
           <ul class="nav__list" @click="closeNav">
             <li><router-link to="/">HOME</router-link></li>
             <li><router-link to="/catalog">CATALOG</router-link></li>
-            <li><router-link to="/product">PRODUCT</router-link></li>
+            <li><router-link to="/product/1">PRODUCT</router-link></li>
           </ul>
         </nav>
 
@@ -52,7 +56,7 @@ const closeNav = () => { navOpen.value = false }
               <circle cx="8" cy="18" r="1.5" fill="currentColor"/>
               <circle cx="17" cy="18" r="1.5" fill="currentColor"/>
             </svg>
-            <span class="icon-btn__count">0</span>
+            <span class="icon-btn__count" v-if="cartStore.itemCount > 0">{{ cartStore.itemCount }}</span>
           </router-link>
         </div>
       </div>

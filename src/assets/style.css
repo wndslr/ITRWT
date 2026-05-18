@@ -966,13 +966,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
     grid-template-areas:
       "women men"
       "kids  kids"
-      "acc   acc";
+      "accessories accessories";
     gap:0;
   }
   .offer__card--women{grid-area:women;}
   .offer__card--men{grid-area:men;}
   .offer__card--kids{grid-area:kids;min-height:180px;}
-  .offer__card--acc{grid-area:accessories;min-height:140px;}
   .offer__card--accessories{grid-area:accessories;min-height:140px;}
   .offer__card--women,.offer__card--men{min-height:260px;}
 

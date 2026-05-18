@@ -1,17 +1,14 @@
 <script setup>
+import { onMounted } from 'vue'
 import AppHeader from '@/components/AppHeader.vue'
 import AppFeatures from '@/components/AppFeatures.vue'
 import AppSubscribe from '@/components/AppSubscribe.vue'
 import AppFooter from '@/components/AppFooter.vue'
 import ProductCard from '@/components/ProductCard.vue'
+import { useCatalogStore } from '@/stores/useCatalogStore.js'
 
-const offers = [
-  { mod: 'women',       label: 'WOMEN' },
-  { mod: 'men',         label: 'MEN' },
-  { mod: 'kids',        label: 'KIDS' },
-  { mod: 'accessories', label: 'ACCESSORIES' }
-]
-const products = Array.from({ length: 6 })
+const store = useCatalogStore()
+onMounted(() => store.getHome())
 </script>
 
 <template>
@@ -37,15 +34,15 @@ const products = Array.from({ length: 6 })
     <div class="container">
       <div class="offer__grid">
         <div
-          v-for="o in offers"
-          :key="o.mod"
+          v-for="o in store.homeData?.offers ?? []"
+          :key="o.id"
           class="offer__card"
           :class="`offer__card--${o.mod}`"
           :style="{ backgroundImage: `url('/img/offer-${o.mod}.png')` }"
         >
           <div class="offer__overlay"></div>
           <div class="offer__label">
-            <span>30% OFF</span>
+            <span>{{ o.discount }}</span>
             <em>{{ o.label }}</em>
           </div>
         </div>
@@ -61,8 +58,15 @@ const products = Array.from({ length: 6 })
       </div>
       <div class="products__grid">
         <ProductCard
-          v-for="(p, i) in products" :key="i"
-          :image="`/img/product-${(i % 6) + 1}.png`"
+          v-for="p in store.homeData?.featured ?? []"
+          :key="p.id"
+          :id="p.id"
+          :title="p.title"
+          :desc="p.desc"
+          :price="'$' + p.price + '.00'"
+          :color="p.color"
+          :size="p.size"
+          :image="p.image"
         />
       </div>
       <div class="products__more">
