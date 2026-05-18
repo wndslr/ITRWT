@@ -16,9 +16,9 @@ const PRODUCTS = Array.from({ length: 20 }, (_, i) => ({
 
 const HERO_DATA = {
   offers: [
-    { id: 1, mod: 'women',       label: 'WOMEN',       discount: '30% OFF' },
-    { id: 2, mod: 'men',         label: 'MEN',         discount: '30% OFF' },
-    { id: 3, mod: 'kids',        label: 'KIDS',        discount: '30% OFF' },
+    { id: 1, mod: 'women', label: 'WOMEN', discount: '30% OFF' },
+    { id: 2, mod: 'men', label: 'MEN', discount: '30% OFF' },
+    { id: 3, mod: 'kids', label: 'KIDS', discount: '30% OFF' },
     { id: 4, mod: 'accessories', label: 'ACCESSORIES', discount: '30% OFF' }
   ],
   featured: PRODUCTS.slice(0, 6)
