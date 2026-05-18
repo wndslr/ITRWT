@@ -3,10 +3,10 @@ import { ref, computed } from 'vue'
 import { fetchUser, registerUser } from '@/api/endpoints/user.js'
 
 export const useUserStore = defineStore('user', () => {
-  const user    = ref(null)
-  const token   = ref(localStorage.getItem('token') || null)
+  const user = ref(null)
+  const token = ref(localStorage.getItem('token') || null)
   const loading = ref(false)
-  const error   = ref(null)
+  const error = ref(null)
 
   const isLoggedIn = computed(() => !!token.value)
 
@@ -22,7 +22,7 @@ export const useUserStore = defineStore('user', () => {
     loading.value = true; error.value = null
     try {
       const data = await registerUser(formData)
-      user.value  = data
+      user.value = data
       token.value = data.token
       localStorage.setItem('token', data.token)
       return true
