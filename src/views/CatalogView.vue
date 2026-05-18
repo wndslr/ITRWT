@@ -46,7 +46,6 @@ const currentPage = ref(1)
     <div class="container">
       <div class="catalog__layout">
 
-        <!-- FILTER SIDEBAR -->
         <aside class="filter">
           <div class="filter__head">
             FILTER
@@ -76,7 +75,6 @@ const currentPage = ref(1)
           </div>
         </aside>
 
-        <!-- MAIN -->
         <div class="catalog__main">
           <div class="sortbar">
             <div
