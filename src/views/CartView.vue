@@ -33,7 +33,6 @@ const clearCart = () => { items.value = [] }
     <div class="container">
       <div class="cart__layout">
 
-        <!-- ITEMS -->
         <div>
           <div class="cart__items">
             <div class="cart-item" v-for="item in items" :key="item.id">
@@ -60,7 +59,6 @@ const clearCart = () => { items.value = [] }
           </div>
         </div>
 
-        <!-- SIDEBAR -->
         <div class="cart__sidebar">
           <div class="shipping-box">
             <div class="shipping-box__title">SHIPPING ADRESS</div>
