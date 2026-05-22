@@ -1,0 +1,27 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: itrwt-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: itrwt
+
+  mongo-express:
+    image: mongo-express:latest
+    container_name: itrwt-mongo-ui
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_BASICAUTH: false
+    depends_on:
+      - mongo
+
+volumes:
+  mongo-data:

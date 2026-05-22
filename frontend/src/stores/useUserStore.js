@@ -1,0 +1,61 @@
+import { defineStore } from 'pinia'
+import { ref, computed } from 'vue'
+import { registerUser } from '@/api/endpoints/user.js'
+import api from '@/api/axios.js'
+import { useCartStore } from '@/stores/useCartStore.js'
+
+export const useUserStore = defineStore('user', () => {
+  const user = ref(null)
+  const token = ref(localStorage.getItem('token') || null)
+  const loading = ref(false)
+  const error = ref(null)
+
+  const isLoggedIn = computed(() => !!token.value)
+
+  async function getUser() {
+    if (!token.value) return
+    loading.value = true; error.value = null
+    try { user.value = await api.get('/user/me') }
+    catch (e) { error.value = e.message }
+    finally { loading.value = false }
+  }
+
+  async function registration(formData) {
+    loading.value = true; error.value = null
+    try {
+      const data = await registerUser(formData)
+      user.value = data.user
+      token.value = data.token
+      localStorage.setItem('token', data.token)
+      return true
+    } catch (e) {
+      error.value = e.message
+      return false
+    } finally { loading.value = false }
+  }
+
+  async function login(email, password) {
+    loading.value = true; error.value = null
+    try {
+      const data = await api.post('/user/login', { email, password })
+      user.value = data.user
+      token.value = data.token
+      localStorage.setItem('token', data.token)
+      return true
+    } catch (e) {
+      error.value = e.message
+      return false
+    } finally { loading.value = false }
+  }
+
+  function logout() {
+    const cartStore = useCartStore()
+    cartStore.items = []
+    if (cartStore.items.length) cartStore.clearCartAll()
+    user.value = null
+    token.value = null
+    localStorage.removeItem('token')
+  }
+
+  return { user, token, loading, error, isLoggedIn, getUser, registration, login, logout }
+})
